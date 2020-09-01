@@ -1,0 +1,27 @@
+package com.kh.model.service;
+
+import static com.kh.common.JDBCTemplate.getConnection;
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.kh.model.dao.ProductDao;
+import com.kh.model.vo.Product;
+import static com.kh.common.JDBCTemplate.*;
+
+
+public class ProductService {
+
+	public void selectList() {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectList(conn);
+		
+		close(conn);
+		
+		
+	}
+	
+	
+	
+}

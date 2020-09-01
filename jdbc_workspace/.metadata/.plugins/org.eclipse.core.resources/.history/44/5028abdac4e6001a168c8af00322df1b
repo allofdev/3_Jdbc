@@ -1,0 +1,53 @@
+package com.kh.controller;
+
+import java.util.ArrayList;
+
+import com.kh.model.service.MemberService;
+import com.kh.model.vo.Member;
+import com.kh.view.MemberMenu;
+
+public class MemberController {
+
+	
+	public void insertMember(Member m) {
+		
+		int result = new MemberService().insertMember(m);
+		
+		if(result > 0) { // 성공뷰
+			new MemberMenu().displaySuccess("회원가입 성공!");
+		}else { // 실패뷰
+			new MemberMenu().displayFail("회원가입 실패!");
+		}
+		
+		
+		
+	}
+	
+	
+	public void selectList() {
+		
+		ArrayList<Member> list = new MemberService().selectList();
+		
+		if(list.isEmpty()) { // 조회결과가 없을경우(list가 비어있을경우) 
+			new MemberMenu().displayMemberList("전체 조회 결과 없습니다.");
+		}else { // 조회결과가 있을경우
+			
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

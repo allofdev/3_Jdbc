@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="com.kh.view.MemberMenu"/>
+<fullyQualifiedTypeName name="com.kh.model.dao.MemberDao"/>
+<fullyQualifiedTypeName name="com.kh.model.vo.Member"/>
+<fullyQualifiedTypeName name="com.kh.model.service.ProductService"/>
+<fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.kh.common.JDBCTemplate"/>
+<fullyQualifiedTypeName name="com.kh.view.ProductMenu"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.kh.model.vo.Product"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+</qualifiedTypeNameHistroy>

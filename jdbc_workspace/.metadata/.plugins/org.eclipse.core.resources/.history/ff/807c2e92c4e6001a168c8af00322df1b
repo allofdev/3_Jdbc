@@ -1,0 +1,42 @@
+package com.kh.controller;
+
+import com.kh.model.service.MemberService;
+import com.kh.model.vo.Member;
+import com.kh.view.MemberMenu;
+
+public class MemberController {
+
+	
+	public void insertMember(Member m) {
+		
+		int result = new MemberService().insertMember(m);
+		
+		if(result > 0) { // 성공뷰
+			new MemberMenu().displaySuccess("회원가입 성공!");
+		}else { // 실패뷰
+			new MemberMenu().displayFail("회원가입 실패!");
+		}
+		
+		
+		
+	}
+	
+	
+	public void selectList() {
+		
+		ArrayList<Member> list = new MemberService().selectList();
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

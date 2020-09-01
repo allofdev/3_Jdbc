@@ -1,0 +1,93 @@
+package com.kh.controller;
+
+import java.util.ArrayList;
+
+import com.kh.model.dao.MemberDao;
+import com.kh.model.vo.Member;
+import com.kh.view.MemberMenu;
+
+// Controller : 클라이언트의 요청 받아서 처리한 후 응답 뷰(성공/실패, 조회유무) 결정
+
+public class MemberController {
+	
+	
+	
+	/**
+	 * 사용자가 회원 가입 요청시 실행되는 메소드
+	 * @param m     회원가입화면에서 사용자가 입력한 회원 정보들이 다 담겨있는  Member객체
+	 */
+	public void insertMember(Member m) {
+		
+		int result = new MemberDao().insertMember(m);
+		
+		if(result > 0) {
+			new MemberMenu().displaySuccess("회원가입 성공!!");
+		}else {
+			new MemberMenu().displayFail("회원가입 실패!!");
+		}
+		
+		
+	}
+	
+	
+	public void selectMember() {
+		
+		ArrayList<Member> list = new MemberDao().selectMember();
+		
+		if(list.isEmpty()) { // 비어있으면 true
+			new MemberMenu().displayNoData("회원 정보를 출력할 수 없습니다.");
+		}else { // 리스트가 있으면 true
+			new MemberMenu().displayMemberList(list);
+		}
+		
+	}
+	
+	
+	/**
+	 * 사용자가 회원 아이디로 검색 요청시 실행되는 메소드
+	 * @param userId
+	 */
+	public void selectByUserId(String userId) {
+		
+		Member m = new MemberDao().inputMemberId(userId);
+		
+		if(m == null) { // null일 경우
+			new MemberMenu().displayNoData(userId + "에 해당하는 검색결과가 없습니다.");
+		}else { // 정보가 있을 경우
+			new MemberMenu().displayMember(m);
+		}
+		
+	}
+	
+	
+	public void selectByUserName(String userName) {
+		
+		ArrayList<Member> list = new MemberDao().selectByUserName(userName);
+		
+		if(list.isEmpty()) {
+			new MemberMenu().displayNoData("회원정 보를 출력할 수 없습니다.");
+		}else {
+			new MemberMenu().displayMemberList(list);
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

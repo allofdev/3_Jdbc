@@ -1,0 +1,8 @@
+#List=ArryaList
+#Map=HashMap
+
+# C R U D
+Create=INSERT
+Read=SELECT
+Update=UPDATE
+Delete=DELETE

@@ -1,0 +1,13 @@
+package com.kh.run;
+
+public class Run {
+
+	public static void main(String[] args) {
+		
+		// Properties => Map
+		// 자식               부모
+		
+		
+		
+	}
+}

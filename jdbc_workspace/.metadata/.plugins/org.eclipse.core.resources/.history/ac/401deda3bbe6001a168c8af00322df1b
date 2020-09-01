@@ -1,0 +1,19 @@
+package com.kh.common;
+
+public class JDBCTemplate {
+	
+	// 이 클래스에서의 모든 메소드들 다 static 메소드
+	// 싱클톤 패턴 : 메모리 영역에 단 한번만 올라간거 재사용하는 개념
+	
+	// 1. Connection 객체 생성해서(즉, DB연결된) 반환시켜주는 메소드
+	
+	public static void 
+	
+	int a = 10;
+	
+	
+	
+	
+	
+	
+}

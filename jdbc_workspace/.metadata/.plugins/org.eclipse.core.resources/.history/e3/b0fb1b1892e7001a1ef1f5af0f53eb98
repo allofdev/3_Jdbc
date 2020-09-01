@@ -1,0 +1,20 @@
+package com.kh.model.vo;
+
+public class Product {
+
+	// 변수
+	private String productId;
+	private String pName;;
+	private int price;
+	private String description;
+	private int stock;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

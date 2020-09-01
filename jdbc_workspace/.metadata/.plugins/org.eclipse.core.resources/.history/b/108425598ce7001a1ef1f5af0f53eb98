@@ -1,0 +1,152 @@
+package com.kh.controller;
+
+import java.util.ArrayList;
+
+import com.kh.model.service.MemberService;
+import com.kh.model.vo.Member;
+import com.kh.view.MemberMenu;
+
+public class MemberController {
+
+	
+	/**
+	 * 회원 가입 메소드
+	 * @param m
+	 */
+	public void insertMember(Member m) {
+		
+		int result = new MemberService().insertMember(m);
+		
+		if(result > 0) { // 성공뷰
+			new MemberMenu().displaySuccess("회원가입 성공!");
+		}else { // 실패뷰
+			new MemberMenu().displayFail("회원가입 실패!");
+		}
+		
+		
+		
+	}
+	
+	
+	/**
+	 * 전체 회원 조회 메소드
+	 */
+	public void selectList() {
+		
+		ArrayList<Member> list = new MemberService().selectList();
+		
+		if(list.isEmpty()) { // 조회결과가 없을경우(list가 비어있을경우) 
+			new MemberMenu().displayNoData("전체 조회 결과 없습니다.");
+		}else { // 조회결과가 있을경우
+			new MemberMenu().displayMemberList(list);
+		}
+		
+	}
+	
+	
+	/**
+	 * userId 전달받아서 맞는 회원 조회 메소드
+	 * @param userId
+	 */
+	public void selectByUserId(String userId) {
+		
+		Member m = new MemberService().selectByUserId(userId);
+		
+		if(m == null) {
+			new MemberMenu().displayNoData(userId + " 조회된 결과 없습니다.");
+		}else {
+			new MemberMenu().displayMember(m);
+		}
+		
+	}
+	
+	/**
+	 * keyword 전달받아서 맞는 회원 조회 메소드
+	 * @param keyword
+	 */
+	public void selectByUserName(String keyword) {
+		
+		ArrayList<Member> list = new MemberService().selectByUserName(keyword);
+		
+		if(list.isEmpty()) {// 조회결과가 없을 경우
+			new MemberMenu().displayNoData("키워드 " + keyword + " 조회된 결과 없습니다.");
+		}else {
+			new MemberMenu().displayMemberList(list);
+		}
+		
+	}
+	
+	
+	/**
+	 * userId에 해당하는 회원의
+	 * userPwd, email, phone, address를 변경하는 메소드
+	 * @param m
+	 */
+	public void updateMember(Member m) {
+		
+		int result = new MemberService().updateMember(m);
+		
+		if(result > 0) {
+			new MemberMenu().displaySuccess(m.getUserId() + "님의 회원 수정 성공!");
+		}else {
+			new MemberMenu().displayFail("회원 정보 수정 실패!");
+		}
+		
+		
+		
+	}
+	
+	/**
+	 * userId에 해당하는 회원을 delete
+	 * @param userId
+	 */
+	public void deleteMember(String userId) {
+		
+		int result = new MemberService().deleteMember(userId);
+		
+		
+		if(result > 0) {
+			new MemberMenu().displaySuccess(userId + "님의 회원 탈퇴 성공!");
+		}else {
+			new MemberMenu().displayFail("회원 탈퇴 실패!");
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * userId, userPwd에 해당하는 회원을 전달하여
+	 * userName을 출력하여 로그인
+	 * 
+	 * @param userId
+	 * @param userPwd
+	 */
+	public void loginMember(String userId, String userPwd) {
+		
+		String userName = new MemberService().loginMember(userId, userPwd);
+		
+		if(userName == null) {
+			new MemberMenu().displayNoData("없엄"); // 조회X => 로그인 실패
+		}else {
+			new MemberMenu().displaySuccess(userName + "님 환영합니다."); // 조회O => 로그인 성공 // 따로만들어야하는데 그냥 displaySuccess() 사용
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

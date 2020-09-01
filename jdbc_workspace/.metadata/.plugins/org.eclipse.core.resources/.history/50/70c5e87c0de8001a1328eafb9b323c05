@@ -1,0 +1,189 @@
+package com.kh.model.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.kh.model.vo.Product;
+import static com.kh.common.JDBCTemplate.*;
+
+
+
+public class ProductDao {
+	
+	
+	public ArrayList<Product> selectList(Connection conn) {
+		// select문 -> ResultSet (여러 행)
+		
+		ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = "SELECT * FROM PRODUCT";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				list.add(new Product(rset.getString("PRODUCT_ID"),
+						             rset.getString("P_NAME"),
+						             rset.getInt("PRICE"),
+						             rset.getString("DESCRIPTION"),
+						             rset.getInt("STOCK")));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	
+	
+	public int insertProduct(Connection conn, Product p) {
+		// insert문 -> result(int) -> 트랜잭션처리
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "INSERT INTO PRODUCT VALUES(?, ?, ?, ?, ?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getProductId());
+			pstmt.setString(2, p.getpName());
+			pstmt.setInt(3, p.getPrice());
+			pstmt.setString(4, p.getDescription());
+			pstmt.setInt(5, p.getStock());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	
+	public int updateProdcut(Connection conn, Product p) {
+		// update문 => result(int) -> 트랜잭션 처리
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE PRODUCT SET P_NAME = ?, PRICE = ?, DESCRIPTION = ?, STOCK = ? WHERE PRODUCT_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, p.getpName());
+			pstmt.setInt(2, p.getPrice());
+			pstmt.setString(3, p.getDescription());
+			pstmt.setInt(4, p.getStock());
+			pstmt.setString(5, p.getProductId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	
+	public int deleteProduct(Connection conn, String productId) {
+		// delete문 => result(int) => 트랜잭션 처리
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM PRODUCT WHERE PRODUCT_ID = ?";
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, productId);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public void selectListKeyword(Connection conn, String keyword) {
+		// select문 => ResultSet(여러 행)
+		
+		//필요한 변수
+		ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = "SELECT * FROM PRODUCT WHERE P_NAME LIKE ?";
+		
+		// pstmt
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, keyword);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

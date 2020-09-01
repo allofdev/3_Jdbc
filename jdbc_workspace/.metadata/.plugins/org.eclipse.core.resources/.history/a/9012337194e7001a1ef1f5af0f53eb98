@@ -1,0 +1,39 @@
+package com.kh.model.vo;
+
+public class Product {
+
+	// 변수
+	private String productId;
+	private String pName;;
+	private int price;
+	private String description;
+	private int stock;
+	
+	// 기본생성자
+	public Product()
+	{
+		
+	}
+	
+	// 매개변수 생성자
+	public Product(String productId, String pName, int price, String description, int stock) {
+		this.productId = productId;
+		this.pName = pName;
+		this.price = price;
+		this.description = description;
+		this.stock = stock;
+		
+	}
+	
+	// setter / getter메소드
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
